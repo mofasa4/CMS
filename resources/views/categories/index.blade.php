@@ -16,6 +16,7 @@
             <tr>
                 <td>
                 {{$category->name}}
+                <a href="{{route('categories.edit', $category->id)}}" class="btn btn-primary btn-sm float-right">Edit</a>
                 </td>
             </tr>
         @endforeach
