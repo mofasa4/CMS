@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -13,7 +15,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+        return view('categories.index')->with('categories', Category::all());
     }
 
     /**
@@ -32,9 +34,21 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request  $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        
+        $category = new Category();
+        $category->name = $request['name'];
+
+        $category->save();
+
+        session()->flash('success', 'Category Created Successfully');
+
+        return redirect(route('categories.index'));
     }
 
     /**
