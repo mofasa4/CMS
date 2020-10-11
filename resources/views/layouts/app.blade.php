@@ -12,6 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"  crossorigin="anonymous">
 
         @livewireStyles
 
@@ -21,22 +22,37 @@
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
             @livewire('navigation-dropdown')
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
             <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+
+           @auth
+           <div class="container my-5">
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <a href="">Posts</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="">Categories</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                    @yield('content')
+                    </div>
+                </div>
+            </div>
+           @else
+           @yield('content')
+           @endauth
+            
         </div>
+
+
 
         @stack('modals')
 
         @livewireScripts
+
     </body>
 </html>
