@@ -10,13 +10,18 @@
     <table class="table">
         <thead>
             <th>Name</th>
+            <th></th>
+            <th></th>
         </thead>
         <tbody>
         @foreach($categories as $category)
             <tr>
                 <td>
                 {{$category->name}}
-                <a href="{{route('categories.edit', $category->id)}}" class="btn btn-primary btn-sm float-right">Edit</a>
+                <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-primary btn-sm float-right">Edit</a>
+                </td>
+                <td>
+                <button class="btn btn-danger btn-sm" wire:click="delete({{$category->id}})">delete</button>
                 </td>
             </tr>
         @endforeach
