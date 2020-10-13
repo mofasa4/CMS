@@ -11,27 +11,23 @@
         <thead>
             <th>Title</th>
             <th>Description</th>
-            <th>Content</th>
-            <th>published_at</th>
-            <th>Image</th>
+            <th></th>
+            <th></th>
         </thead>
         <tbody>
         @foreach($posts as $post)
         <tr>
             <td>
+                <img src="/storage/{{$post->image}}" style="width:50px;height:50px;" alt="">
+            </td>
+            <td>
             {{$post->title}}
             </td>
             <td>
-            {{$post->description}}
+                <a href="" class="btn btn-sm btn-info">Edit</a>
             </td>
             <td>
-            {{$post->content}}
-            </td>
-            <td>
-            {{$post->published_at}}
-            </td>
-            <td>
-            <img src="{{$post->image}}" alt="">
+                <a href="" class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>
         @endforeach
